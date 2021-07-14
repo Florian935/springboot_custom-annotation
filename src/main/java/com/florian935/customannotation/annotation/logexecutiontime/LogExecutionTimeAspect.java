@@ -1,4 +1,4 @@
-package com.florian935.customannotation.annotation;
+package com.florian935.customannotation.annotation.logexecutiontime;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ public class LogExecutionTimeAspect {
 
     @Around("@annotation(LogExecutionTime)")
     @SneakyThrows
-    public Object logExecutionTime(ProceedingJoinPoint proceedingJoinPoint) {
+    Object logExecutionTime(ProceedingJoinPoint proceedingJoinPoint) {
 
         long start = System.currentTimeMillis();
         Object proceed = proceedingJoinPoint.proceed();
