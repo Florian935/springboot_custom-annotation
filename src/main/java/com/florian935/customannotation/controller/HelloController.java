@@ -1,5 +1,6 @@
 package com.florian935.customannotation.controller;
 
+import com.florian935.customannotation.annotation.logafter.LogAfter;
 import com.florian935.customannotation.annotation.logbefore.LogBefore;
 import com.florian935.customannotation.annotation.logexecutiontime.LogExecutionTime;
 import lombok.SneakyThrows;
@@ -31,6 +32,16 @@ public class HelloController {
     String sayHelloBefore(@PathVariable String name) {
 
         log.info("This message is printed after the message of the annotation");
+
+        return String.format("Hello %s !", name);
+    }
+
+    @GetMapping(path = "/hello/after/{name}", produces = TEXT_PLAIN_VALUE)
+    @ResponseStatus(OK)
+    @LogAfter
+    String sayHelloAfter(@PathVariable String name) {
+
+        log.info("This message is printed before the message of the annotation");
 
         return String.format("Hello %s !", name);
     }
